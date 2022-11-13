@@ -34,19 +34,19 @@ jobs:
           tags: flutterskyriderlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_52a4a73eb7154ea3acf524d050f4b0e5 }}/flutterskyriderlog:${{ github.sha }}
           file: ./Dockerfile
 
-    deploy:
-      runs-on: ubuntu-latest
-      needs: build
-      environment:
-        name: 'production'
-        url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-      steps:
-        - name: Deploy to Azure Web App
-          id: deploy-to-webapp
-          uses: azure/webapps-deploy@v2
-          with:
-            app-name: 'flutter-sky-rider'
-            slot-name: 'production'
-            publish-profile: ${{ secrets.AzureAppService_PublishProfile_dc046b41b81746a2971b429bd83b068c }}
-            images: 'flutterskyriderlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_52a4a73eb7154ea3acf524d050f4b0e5 }}/flutterskyriderlog:${{ github.sha }}'
+    steps:
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'flutter-sky-rider'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_dc046b41b81746a2971b429bd83b068c }}
+          images: 'flutterskyriderlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_52a4a73eb7154ea3acf524d050f4b0e5 }}/flutterskyriderlog:${{ github.sha }}'
