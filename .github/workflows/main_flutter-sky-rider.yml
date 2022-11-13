@@ -50,7 +50,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'flutter-sky-rider'
+          app-name: 'flutterskyriderlog'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_dc046b41b81746a2971b429bd83b068c }}
           images: 'flutterskyriderlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_52a4a73eb7154ea3acf524d050f4b0e5 }}/flutterskyriderlog:${{ github.sha }}'
