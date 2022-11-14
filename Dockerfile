@@ -5,6 +5,10 @@
 # EXPOSE 8000
 
 # ENTRYPOINT ["python3", "-m", "http.server", "8000"]
+
+# ---
+
+
 # Install Operating system and dependencies
 FROM ubuntu:22.04
 
@@ -36,10 +40,20 @@ RUN flutter build web
 WORKDIR /app/build/web
 
 # Record the exposed port
-EXPOSE 8000
+EXPOSE 8080
 
 # make server startup script executable and start the web server
 # RUN ["chmod", "+x", "/app/server/server.sh"]
 
 # ENTRYPOINT [ "/app/server/server.sh"]
-ENTRYPOINT ["python3", "-m", "http.server", "8000"]
+ENTRYPOINT ["python3", "-m", "http.server", "8080"]
+
+
+# ---
+
+# FROM mcr.microsoft.com/appsvc/python:latest
+
+# ENV PORT 8080
+# EXPOSE 8080
+
+# ENTRYPOINT ["gunicorn", "--timeout", "600", "--access-logfile", "'-'", "--error-logfile", "'-'", "--chdir=/opt/defaultsite", "application:app"]
