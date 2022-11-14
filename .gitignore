@@ -24,3 +24,5 @@ doc/api/
 windows/
 linux/
 macos/
+
+node_modules/
